@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speed Reader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Speed Reader</h1>
+    </header>
+
+    <!-- Source Selection -->
+    <div id="source-selection" class="section">
+      <button id="btn-medium" class="source-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+        </svg>
+        Read Medium Article
+      </button>
+      <button id="btn-selection" class="source-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h7"/>
+        </svg>
+        Read Selected Text
+      </button>
+      <button id="btn-pdf" class="source-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10,9 9,9 8,9"/>
+        </svg>
+        Upload PDF File
+      </button>
+      <input type="file" id="pdf-input" accept=".pdf" class="hidden">
+      <div id="status" class="status"></div>
+      <div id="progress-status" class="progress-status hidden">
+        <div class="progress-bar-small">
+          <div id="extraction-progress" class="progress-fill-small"></div>
+        </div>
+        <span id="extraction-text">Processing...</span>
+      </div>
+    </div>
+
+    <!-- Reader View -->
+    <div id="reader-view" class="section hidden">
+      <!-- Word Display -->
+      <div class="word-container">
+        <div class="anchor-line top"></div>
+        <div class="word-display">
+          <span id="word-before"></span>
+          <span id="word-anchor"></span>
+          <span id="word-after"></span>
+        </div>
+        <div class="anchor-line bottom"></div>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div class="progress-stats">
+          <span id="word-count">0 / 0</span>
+          <span id="time-remaining">0:00</span>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button id="btn-restart" class="control-btn" title="Restart (R)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 4v6h6M23 20v-6h-6"/>
+            <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+          </svg>
+        </button>
+        <button id="btn-play" class="control-btn play-btn" title="Play/Pause (Space)">
+          <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" class="hidden">
+            <rect x="6" y="4" width="4" height="16"/>
+            <rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+        <button id="btn-back" class="control-btn" title="Back to source selection">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Speed Slider -->
+      <div class="speed-control">
+        <label>Speed: <span id="wpm-value">350</span> WPM</label>
+        <input type="range" id="speed-slider" min="350" max="900" step="10" value="350">
+        <div class="speed-labels">
+          <span>350</span>
+          <span>900</span>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts -->
+      <div class="shortcuts">
+        Space: play/pause | Arrows: skip | R: restart
+      </div>
+    </div>
+  </div>
+
+  <script src="pdf-processor.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

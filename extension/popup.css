@@ -1,0 +1,308 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0a0a0a;
+  color: #ededed;
+  width: 400px;
+  min-height: 300px;
+}
+
+.container {
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Source Selection */
+.source-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #ededed;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.source-btn:hover {
+  background: #252525;
+  border-color: #444;
+}
+
+.source-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.status {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+  min-height: 20px;
+}
+
+.status.error {
+  color: #ef4444;
+}
+
+.status.success {
+  color: #22c55e;
+}
+
+/* Word Display */
+.word-container {
+  background: #111;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.anchor-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background: #ef4444;
+}
+
+.anchor-line.top {
+  top: 8px;
+}
+
+.anchor-line.bottom {
+  bottom: 8px;
+}
+
+.word-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 32px;
+  letter-spacing: 0.05em;
+  min-height: 48px;
+}
+
+#word-before {
+  text-align: right;
+  min-width: 80px;
+  color: #d1d5db;
+}
+
+#word-anchor {
+  color: #ef4444;
+  font-weight: bold;
+  width: 1ch;
+  text-align: center;
+}
+
+#word-after {
+  text-align: left;
+  min-width: 80px;
+  color: #d1d5db;
+}
+
+/* Progress */
+.progress-container {
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #1f1f1f;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #3b82f6;
+  width: 0%;
+  transition: width 0.1s;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1f1f1f;
+  border: none;
+  border-radius: 8px;
+  color: #ededed;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.control-btn:hover {
+  background: #2d2d2d;
+}
+
+.control-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.control-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.control-btn:not(.play-btn) {
+  padding: 10px;
+}
+
+.play-btn {
+  padding: 14px;
+  background: #3b82f6;
+  border-radius: 50%;
+}
+
+.play-btn:hover {
+  background: #2563eb;
+}
+
+.play-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Speed Control */
+.speed-control {
+  margin-bottom: 12px;
+}
+
+.speed-control label {
+  display: block;
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.speed-control label span {
+  color: #ededed;
+  font-weight: 500;
+}
+
+.speed-control input[type="range"] {
+  width: 100%;
+  height: 6px;
+  background: #1f1f1f;
+  border-radius: 3px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.speed-control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.speed-control input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.speed-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Shortcuts */
+.shortcuts {
+  text-align: center;
+  font-size: 11px;
+  color: #4b5563;
+}
+
+/* PDF Extraction Progress */
+.progress-status {
+  margin-top: 8px;
+  padding: 12px;
+  background: #111;
+  border-radius: 8px;
+}
+
+.progress-bar-small {
+  height: 4px;
+  background: #1f1f1f;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill-small {
+  height: 100%;
+  background: #3b82f6;
+  width: 0%;
+  transition: width 0.3s;
+}
+
+#extraction-text {
+  font-size: 12px;
+  color: #9ca3af;
+  display: block;
+  text-align: center;
+}
+
+.source-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
