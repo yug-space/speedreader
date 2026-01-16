@@ -287,6 +287,17 @@ export default function Home() {
         <span ref={anchorRef} className="text-red-500 font-bold">{anchor}</span>
         <span className="text-white">{after}</span>
       </div>
+
+      {/* Built by credit */}
+      <a
+        href="https://x.com/syuggupta"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 text-gray-600 hover:text-gray-400 text-xs transition-colors"
+        onClick={(e) => e.stopPropagation()}
+      >
+        Built by @syuggupta
+      </a>
     </main>
   );
 }
